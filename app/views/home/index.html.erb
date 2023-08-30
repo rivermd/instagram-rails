@@ -16,14 +16,14 @@
                         </div>
         
                         <% if devise_mapping.rememberable? %>
-                            <div class="form-check">
+                            <div class="form-check mb-3">
                             <%= f.check_box :remember_me, class:"form-check-input" %>
                             <%= f.label :remember_me, class:"form-check-label" %>
                             </div>
                         <% end %>
         
-                        <div class="actions">
-                            <%= f.submit "Log in" %>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary insta-primary w-100">Log In</button>
                         </div>
                         <% end %>
                 </div>
@@ -31,7 +31,7 @@
                 <hr>
                     
                 <div class="d-flex justify-content-center">
-                    <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                    <%= link_to "Forgotten your password?", new_password_path(resource_name), class: "dark-link" %><br />
                 </div>
 
 
@@ -40,7 +40,7 @@
 
         <div class="card py-2">
             <div class="card-body" style="width: 23rem;">
-                <p class= "mb-0 text-center fs-8">Don't have an account? <%= link_to "Sign Up", new_user_registration_path %></p>
+                <p class= "mb-0 text-center">Don't have an account? <%= link_to "Sign Up", new_user_registration_path, class: "standard-link" %></p>
             </div>
         </div>
     </div>
