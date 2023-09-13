@@ -1,47 +1,55 @@
-<div class="vh-100 d-flex justify-content-center align-items-center">
-    <div>
-        <div class="card p-4 mb-3">
-                <div class="card-body" style="width: 23rem;">
-                <div class="instagram-logo-link"></div>
-                
-                <div class="d-flex justify-content-center">
-                    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "w-100" }) do |f| %>
-                        <div class="mb-3">
-                            <%= f.email_field :email, placeholder: "Phone number, username, or email" ,autofocus: true, autocomplete: "email", class: "form-control" %>
-                        </div>
-        
-                        <div class="mb-3">
-                            <%= f.password_field :password, placeholder: "Password", autocomplete: "current-password", class: "form-control" %>
-                        </div>
-        
-                        <% if devise_mapping.rememberable? %>
-                            <div class="form-check mb-3">
-                            <%= f.check_box :remember_me, class:"form-check-input" %>
-                            <%= f.label :remember_me, class:"form-check-label" %>
-                            </div>
-                        <% end %>
-        
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary insta-primary w-100">Log In</button>
-                        </div>
-                        <% end %>
-                </div>
-
-                <hr>
-                    
-                <div class="d-flex justify-content-center">
-                    <%= link_to "Forgotten your password?", new_password_path(resource_name), class: "dark-link" %><br />
-                </div>
-
-
-                </div>
+<div class="row">
+    <div class="col">
+      <div class="py-4 px-4">
+        <div class="mb-4">
+          <%= link_to root_path do %>
+            <%= image_tag "ig-logo-home.png", width: "115", height: "37"%>
+          <% end %>
         </div>
-
-        <div class="card py-2">
-            <div class="card-body" style="width: 23rem;">
-                <p class= "mb-0 text-center">Don't have an account? <%= link_to "Sign Up", new_user_registration_path, class: "standard-link" %></p>
-            </div>
+        <div class="mb-4">
+            <%= link_to "", data: {"bs-toggle" => "modal", "bs-target" => "#new-post-modal"}, class: "sidebar-link" do %>
+              <div class="d-flex align-items-center">
+              </div>
+            <%= image_tag "icons/more.png", width: "24", class: "block m-3"%>
+            Create
+            <% end %>
         </div>
+        <div>
+          <%= button_to "Log Out", destroy_user_session_path, :method => :delete %>
+        </div>            
+      </div>
     </div>
-</div>
+    <div class="col-7">
+      2 of 3 (wider)
+    </div>
+    <div class="col-3">
+      3 of 3
+    </div>
+  </div>
 
+<!-- Modal -->
+<div class="modal fade" id="new-post-modal" tabindex="-1" aria-labelledby="new-post-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <p class="modal-title fs-6 fw-semibold " id="new-post-modal-label">Create new post</p>
+        </div>
+          <div class="modal-body d-flex justify-content-center align-items-center">
+                <div class="pt-5 py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
+                  <%= image_tag "icons/gallery.png", width: "96", class: "block mb-3" %>
+                  <p class="fs-5">Drag photos and videos here</p>
+
+                  <%= form_with model: Post.new, data: { controller: "new-post-form" } do |f|%>
+                    <%= link_to "Select from gallery", "", data: {action: "click->new-post-form#selectFile"}, id:"post-select-file-button", class: "btn btn-primary insta-primary" %>
+
+                    <%=f.file_field :photo, data: {"new-post-form-target": "photoFile", action: "change->new-post-form#submitForm"}, class: "d-none"%>
+                  <%end%>
+                </div>
+            </div>
+
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>

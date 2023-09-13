@@ -8,18 +8,18 @@
         <p class= "text-center text-body-tertiary fs-5 fw-semibold">Sign up to see photos and videos from your friends</p>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "w-100" }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="mb-3">
+              <%= f.text_field :username, placeholder: "Username", autofocus: true, class:"form-control" %>
+            </div>
 
             <div class="mb-3">
-              <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email", class:"form-control" %>
+              <%= f.email_field :email, placeholder: "Email", autofocus: true, class:"form-control" %>
             </div>
 
             <div class="mb-3">
               <%= f.password_field :password, placeholder: "Password", autocomplete: "new-password", class:"form-control" %>
             </div>
 
-            <div class="mb-3">
-              <%= f.password_field :password_confirmation, placeholder: "Password confirmation", autocomplete: "new-password", class:"form-control" %>
-            </div>
 
             <div class="mb-3">
               <button type="submit" class="btn btn-primary insta-primary w-100">Sign Up</button>
